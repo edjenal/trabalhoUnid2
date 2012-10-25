@@ -1,6 +1,6 @@
 package br.fanese.edu.cli.to;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class AtendimentoTO {
 	
@@ -9,6 +9,7 @@ public class AtendimentoTO {
 	private Date dataConsulta;
 	private int codCliente;
 	private String CRM;
+	private String atdRealizado; 
 	
 	
 	public int getCodAtendimento() {
@@ -47,6 +48,5 @@ public class AtendimentoTO {
 	public void setAtdRealizado(String atdRealizado) {
 		this.atdRealizado = atdRealizado;
 	}
-	private String atdRealizado; 
 	
 }

@@ -33,6 +33,9 @@
 	    		<f:facet name="header">
 	    			<h:outputText value="Funções" />
 	    		</f:facet>
+	    		<h:commandButton value="Atendimento" action="inseriratendimento">
+	    			<f:param value="#{rs.codCliente}" name="codigo"/>
+	    		</h:commandButton>
 	    		<h:commandButton value="Alterar" action="editar">
 	    			<f:param value="#{rs.codCliente}" name="codigo"/>
 	    		</h:commandButton>

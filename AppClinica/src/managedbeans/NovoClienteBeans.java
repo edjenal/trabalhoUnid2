@@ -1,13 +1,17 @@
-package br.fanese.edu.cli.to;
+package managedbeans;
 
 import java.sql.Date;
+import java.util.List;
 
-public class ClienteTO {
+import br.fanese.edu.cli.bo.ClienteBO;
+import br.fanese.edu.cli.bo.ConvenioBO;
+import br.fanese.edu.cli.to.ConvenioTO;
+
+public class NovoClienteBeans {
 	
 	private int codCliente;
 	private String nome;
 	private String sexo;
-	private String sexoTela;
 	private Date dataNascimento;
     private String logadouro;
     private String cep;
@@ -22,6 +26,8 @@ public class ClienteTO {
     private String matriculaConvenio;
     private String validadeConvenio;
     private String nomeConvenio;
+    
+    private List<ConvenioTO> convenio;
     
 	public int getCodCliente() {
 		return codCliente;
@@ -40,12 +46,6 @@ public class ClienteTO {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
-	}
-	public String getSexoTela() {
-		return getSexo().equalsIgnoreCase("M") ? "Masculino" : "Feminino";
-	}
-	public void setSexoTela(String sexoTela) {
-		this.sexoTela = sexoTela;
 	}
 	public Date getDataNascimento() {
 		return dataNascimento;
@@ -131,6 +131,26 @@ public class ClienteTO {
 	public void setNomeConvenio(String nomeConvenio) {
 		this.nomeConvenio = nomeConvenio;
 	}
-    
-    
+	
+	public List<ConvenioTO> getConvenio() {
+		ConvenioBO convenioBO = new ConvenioBO();
+		return convenioBO.findAll();
+	}
+	public void setConvenio(List<ConvenioTO> convenio) {
+		this.convenio = convenio;
+	}
+	public String Inserir(){
+		try{
+			ClienteBO clienteBO = new ClienteBO();
+			clienteBO.insert(nome, sexo, dataNascimento, logadouro, cep, cidade, UF, telefoneResidencial, 
+					telefoneCelular, qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
+					matriculaConvenio, validadeConvenio);
+			return "listar";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	    
 }

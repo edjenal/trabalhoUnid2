@@ -1,13 +1,20 @@
-package br.fanese.edu.cli.to;
+package managedbeans;
 
 import java.sql.Date;
+import java.util.List;
+import javax.faces.context.FacesContext;
+import br.fanese.edu.cli.bo.ClienteBO;
+import br.fanese.edu.cli.bo.ConvenioBO;
+import br.fanese.edu.cli.to.ClienteTO;
+import br.fanese.edu.cli.to.ConvenioTO;
 
-public class ClienteTO {
+public class EditarClienteBeans {
 	
-	private int codCliente;
+	private ClienteTO cliente;
+	private int codigo;
+	private List<ConvenioTO> convenio;
 	private String nome;
 	private String sexo;
-	private String sexoTela;
 	private Date dataNascimento;
     private String logadouro;
     private String cep;
@@ -23,13 +30,50 @@ public class ClienteTO {
     private String validadeConvenio;
     private String nomeConvenio;
     
-	public int getCodCliente() {
-		return codCliente;
+	
+	public ClienteTO getCliente() {
+		ClienteBO clienteBO = new ClienteBO();
+		cliente = clienteBO.findByPrimaryKey(getCodigo());
+		nome = cliente.getNome();
+		sexo = cliente.getSexo();
+		dataNascimento = cliente.getDataNascimento();
+		logadouro = cliente.getLogadouro();
+		cep = cliente.getCep();
+		cidade = cliente.getCidade();
+		UF = cliente.getUF();
+		telefoneResidencial = cliente.getTelefoneResidencial();
+		telefoneCelular = cliente.getTelefoneCelular();
+		qtdDependentes = cliente.getQtdDependentes();
+		identidade = cliente.getIdentidade();
+		orgaoExpedidor = cliente.getOrgaoExpedidor();
+		codConvenio = cliente.getCodConvenio(); 
+		matriculaConvenio = cliente.getMatriculaConvenio();
+		validadeConvenio = cliente.getValidadeConvenio();
+		return cliente;
 	}
-	public void setCodCliente(int codCliente) {
-		this.codCliente = codCliente;
+	public void setCliente(ClienteTO cliente) {
+		this.cliente = cliente;
 	}
+	public int getCodigo() {
+		String vazia = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codigo");
+		if(vazia!=null){
+			codigo = Integer.parseInt(vazia);
+		} 	
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+	public List<ConvenioTO> getConvenio() {
+		ConvenioBO convenioBO = new ConvenioBO();
+		return convenioBO.findAll();
+	}
+	public void setConvenio(List<ConvenioTO> convenio) {
+		this.convenio = convenio;
+	}
+	
 	public String getNome() {
+		getCliente();
 		return nome;
 	}
 	public void setNome(String nome) {
@@ -40,12 +84,6 @@ public class ClienteTO {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
-	}
-	public String getSexoTela() {
-		return getSexo().equalsIgnoreCase("M") ? "Masculino" : "Feminino";
-	}
-	public void setSexoTela(String sexoTela) {
-		this.sexoTela = sexoTela;
 	}
 	public Date getDataNascimento() {
 		return dataNascimento;
@@ -131,6 +169,19 @@ public class ClienteTO {
 	public void setNomeConvenio(String nomeConvenio) {
 		this.nomeConvenio = nomeConvenio;
 	}
-    
-    
+	public String Salvar(){
+		try{
+			ClienteBO clienteBO = new ClienteBO();
+			clienteBO.update(nome, sexo, dataNascimento, logadouro, cep, cidade, UF, telefoneResidencial, 
+					telefoneCelular, qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
+					matriculaConvenio, validadeConvenio, codigo);
+			return "listar";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+		
+	}
+
+	
 }

@@ -20,7 +20,9 @@
 	  		</h:selectOneMenu>
 	  		<br/>
 	  		<h:outputLabel value="Data De Nascimento:" for="dataNascimento"/>
-	  		<h:inputText id="dataNascimento" value="#{NovoClienteBeans.dataNascimento}"/>
+	  		<h:inputText id="dataNascimento" value="#{NovoClienteBeans.dataNascimento}">
+	  			<f:convertDateTime type="date" dateStyle="short" pattern="yyyy-MM-dd"/>
+	  		</h:inputText>
 	  		<br/>
 	  		<h:outputLabel value="Logradouro:" for="logradouro"/>
 	  		<h:inputText id="logradouro" value="#{NovoClienteBeans.logadouro}"/>

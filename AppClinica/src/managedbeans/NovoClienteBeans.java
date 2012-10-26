@@ -1,6 +1,6 @@
 package managedbeans;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import br.fanese.edu.cli.bo.ClienteBO;
@@ -142,7 +142,7 @@ public class NovoClienteBeans {
 	public String Inserir(){
 		try{
 			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.insert(nome, sexo, dataNascimento, logadouro, cep, cidade, UF, telefoneResidencial, 
+			clienteBO.insert(nome, sexo, new java.sql.Date(dataNascimento.getTime()), logadouro, cep, cidade, UF, telefoneResidencial, 
 					telefoneCelular, qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
 					matriculaConvenio, validadeConvenio);
 			return "listar";

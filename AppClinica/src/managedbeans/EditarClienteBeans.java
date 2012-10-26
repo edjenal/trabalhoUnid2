@@ -1,6 +1,6 @@
 package managedbeans;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import br.fanese.edu.cli.bo.ClienteBO;
@@ -172,7 +172,7 @@ public class EditarClienteBeans {
 	public String Salvar(){
 		try{
 			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.update(nome, sexo, dataNascimento, logadouro, cep, cidade, UF, telefoneResidencial, 
+			clienteBO.update(nome, sexo, new java.sql.Date(dataNascimento.getTime()), logadouro, cep, cidade, UF, telefoneResidencial, 
 					telefoneCelular, qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
 					matriculaConvenio, validadeConvenio, codigo);
 			return "listar";

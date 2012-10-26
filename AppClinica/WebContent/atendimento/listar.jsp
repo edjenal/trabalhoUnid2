@@ -15,7 +15,9 @@
 	  			<f:selectItem itemValue="N" itemLabel="Não"/>
 	  		</h:selectOneMenu>
 	  		
-	  		<h:commandButton value="Filtrar"  />
+	  		<h:commandButton value="Filtrar" action="#{ListarAtendimentoBeans.filtrar}">
+	  			<f:param value="#{ListarAtendimentoBeans.atendido}" name="atendido"/>
+	  		</h:commandButton>
 	  		
 	  		<h:dataTable value="#{ListarAtendimentoBeans.atendimentos}" border="1" var="rs">
 				<f:facet name="header">Lista de Clientes</f:facet >

@@ -30,8 +30,13 @@
 	  		</h:selectOneMenu>
 	  		<h:commandButton 
 	  			value="Salvar" 
-	  			action="#{EditarAtendimentoBeans.Salvar()}" disabled="#{EditarAtendimentoBeans.mostrar}">
+	  			action="#{EditarAtendimentoBeans.Salvar}" disabled="#{EditarAtendimentoBeans.mostrar}">
 	  		</h:commandButton>
+	  		<br/>
+	  		<h:commandButton value="Anamnese" action="#{EditarAtendimentoBeans.Anamnese}" >
+    			<f:param value="#{EditarAtendimentoBeans.codAtendimento}" name="codigo"/>
+    		</h:commandButton>
+	  		<br/>
 	  		<h:commandButton 
 	  			value="Cancelar" 
 	  			action="listar"

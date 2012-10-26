@@ -1,21 +1,32 @@
 package managedbeans;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import br.fanese.edu.cli.bo.AtendimentoBO;
 import br.fanese.edu.cli.to.AtendimentoTO;
 
+
 public class EditarAtendimentoBeans {
 	private int codAtendimento;
-	private AtendimentoTO atendimenTO = new AtendimentoTO();
+	private AtendimentoTO atendimenTO;
 	private String atendido;
 	private Boolean mostrar;
+	
 
-	public int getCodAtendimento() {
+	
+	@PostConstruct
+	public void init(){
 		String vazia  = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codigo");
 		if(vazia!=null){
 			codAtendimento = Integer.parseInt(vazia);
-		}
+		}		
+	}
+	
+
+	public int getCodAtendimento() {
 		return codAtendimento;
 	}
 
@@ -24,10 +35,12 @@ public class EditarAtendimentoBeans {
 	}
 
 	public AtendimentoTO getAtendimenTO() {
-		AtendimentoBO atendimentoBO = new AtendimentoBO();
-		atendimenTO = atendimentoBO.findByPrimaryKey(codAtendimento);
-		atendido = atendimenTO.getAtdRealizado();
-		mostrar = atendimenTO.getAtdRealizado().equalsIgnoreCase("S") ? true : false;
+		if(atendimenTO==null){
+			AtendimentoBO atendimentoBO = new AtendimentoBO();
+			atendimenTO = atendimentoBO.findByPrimaryKey(codAtendimento);
+			atendido = atendimenTO.getAtdRealizado();
+			mostrar = atendimenTO.getAtdRealizado().equalsIgnoreCase("S") ? true : false;
+		}
 		return atendimenTO;
 	}
 
@@ -61,6 +74,9 @@ public class EditarAtendimentoBeans {
 			return "";
 		}
 		
+	}
+	public String Anamnese(){
+		return "/anamnese/listar";
 	}
 	
 }

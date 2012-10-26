@@ -23,8 +23,8 @@ public class AtendimentoBO {
 			"select codAtendimento, dataCadastro, dataConsulta, atendimentos.codCliente, atendimentos.crm, atdRealizado," +
 			" clientes.nome as nomeCliente, medicos.nome as nomeMedico" +
 			" from atendimentos inner join clientes on clientes.codCliente =  atendimentos.codCliente "+
-//			" inner join medicos on medicos.crm = atendimentos.crm where atdRealizado = ";
-			" inner join medicos on medicos.crm = atendimentos.crm";
+			" inner join medicos on medicos.crm = atendimentos.crm where atdRealizado = ";
+//			" inner join medicos on medicos.crm = atendimentos.crm";
 	private String SQL_findAll="select codAtendimento, dataCadastro, dataConsulta, codCliente, crm, atdRealizado form atendimentos";
 	
 	public boolean insert(Date dataConsulta, int codCliente, String crm, String atdRealizado) {
@@ -123,8 +123,8 @@ public class AtendimentoBO {
 			List<AtendimentoTO> resultado = new ArrayList<AtendimentoTO>();
 			Connection con = Conexao.getConnection();
 			Statement st = con.createStatement();
-//			ResultSet rs = st.executeQuery(SQL_findByAtendido+atendido);
-			ResultSet rs = st.executeQuery(SQL_findByAtendido);
+			ResultSet rs = st.executeQuery(SQL_findByAtendido+atendido);
+//			ResultSet rs = st.executeQuery(SQL_findByAtendido);
 			while(rs.next()){
 				AtendimentoTO atendimentoTO = new AtendimentoTO();
 				atendimentoTO.setCodAtendimento(rs.getInt("codAtendimento"));

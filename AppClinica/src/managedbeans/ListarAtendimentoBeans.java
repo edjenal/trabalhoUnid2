@@ -3,7 +3,7 @@ package managedbeans;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
 import br.fanese.edu.cli.bo.AtendimentoBO;
@@ -12,11 +12,17 @@ import br.fanese.edu.cli.to.AtendimentoTO;
 public class ListarAtendimentoBeans {
 	
 	private List<AtendimentoTO> atendimentos = new ArrayList<AtendimentoTO>();
-	private String atendido = "S";
+	private String atendido;
+	
+	@PostConstruct
+	public void init(){
+		String vazia  = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("atendido");
+		if(vazia!=null){
+			atendido = vazia;
+		}		
+	}
 	
 	public List<AtendimentoTO> getAtendimentos() {
-		AtendimentoBO atendimentoBO = new AtendimentoBO();
-		atendimentos = atendimentoBO.findByAtendido(atendido);
 		return atendimentos;
 	}
 	public void setAtendimentos(List<AtendimentoTO> atendimentos) {
@@ -28,9 +34,10 @@ public class ListarAtendimentoBeans {
 	public void setAtendido(String atendido) {
 		this.atendido = atendido;
 	}
-	public void filtrar(){
+	public String filtrar(){
 		AtendimentoBO atendimentoBO = new AtendimentoBO();
 		atendimentos = atendimentoBO.findByAtendido(atendido);
+		return "listar";
 	}
 	
 }

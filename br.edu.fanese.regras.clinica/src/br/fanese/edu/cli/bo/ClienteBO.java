@@ -27,7 +27,7 @@ public class ClienteBO {
 			"identidade, orgaoexpedidor, clientes.codConvenio, matriculaconvenio, validadeconvenio, descricao " +
 			"from clientes inner join convenios on convenios.codConvenio = clientes.codConvenio";
 	
-	public boolean insert(String nome, String sexo, Date dataNascimento, String logadouro, 
+	public boolean insert(String nome, String sexo, Date dataNascimento, String logradouro, 
 			String cep, String cidade, String UF, String telefoneResidencial, String telefoneCelular, 
 			int qtdDependentes, String identidade, String orgaoExpedidor, int codConvenio, String matriculaConvenio, String validadeConvenio) {
 		boolean retorno = true;
@@ -37,7 +37,7 @@ public class ClienteBO {
 			st.setString(1, nome);
 			st.setString(2, sexo);
 			st.setDate(3, dataNascimento);
-			st.setString(4, logadouro);
+			st.setString(4, logradouro);
 			st.setString(5, cep);
 			st.setString(6, cidade);
 			st.setString(7, UF);
@@ -70,6 +70,7 @@ public class ClienteBO {
 				clienteTO.setNome(rs.getString("nome"));
 				clienteTO.setSexo(rs.getString("sexo"));
 				clienteTO.setDataNascimento(rs.getDate("dataNascimento"));
+				clienteTO.setLogadouro(rs.getString("logradouro"));
 				clienteTO.setCep(rs.getString("cep"));
 				clienteTO.setCidade(rs.getString("cidade"));
 				clienteTO.setUF(rs.getString("uf"));
@@ -103,6 +104,7 @@ public class ClienteBO {
 				clienteTO.setNome(rs.getString("nome"));
 				clienteTO.setSexo(rs.getString("sexo"));
 				clienteTO.setDataNascimento(rs.getDate("dataNascimento"));
+				clienteTO.setLogadouro(rs.getString("logradouro"));
 				clienteTO.setCep(rs.getString("cep"));
 				clienteTO.setCidade(rs.getString("cidade"));
 				clienteTO.setUF(rs.getString("uf"));

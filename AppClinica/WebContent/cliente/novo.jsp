@@ -25,7 +25,7 @@
 	  		</h:inputText>
 	  		<br/>
 	  		<h:outputLabel value="Logradouro:" for="logradouro"/>
-	  		<h:inputText id="logradouro" value="#{NovoClienteBeans.logadouro}"/>
+	  		<h:inputText id="logradouro" value="#{NovoClienteBeans.logradouro}"/>
 	  		<br/>
 	  		<h:outputLabel value="CEP:" for="cep"/>
 	  		<h:inputText id="cep" value="#{NovoClienteBeans.cep}"/>

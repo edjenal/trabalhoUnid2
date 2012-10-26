@@ -13,7 +13,7 @@ public class NovoClienteBeans {
 	private String nome;
 	private String sexo;
 	private Date dataNascimento;
-    private String logadouro;
+    private String logradouro;
     private String cep;
     private String cidade;
     private String UF;
@@ -53,11 +53,11 @@ public class NovoClienteBeans {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public String getLogadouro() {
-		return logadouro;
+	public String getLogradouro() {
+		return logradouro;
 	}
-	public void setLogadouro(String logadouro) {
-		this.logadouro = logadouro;
+	public void setLogadouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 	public String getCep() {
 		return cep;
@@ -142,7 +142,7 @@ public class NovoClienteBeans {
 	public String Inserir(){
 		try{
 			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.insert(nome, sexo, new java.sql.Date(dataNascimento.getTime()), logadouro, cep, cidade, UF, telefoneResidencial, 
+			clienteBO.insert(nome, sexo, new java.sql.Date(dataNascimento.getTime()), logradouro, cep, cidade, UF, telefoneResidencial, 
 					telefoneCelular, qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
 					matriculaConvenio, validadeConvenio);
 			return "listar";

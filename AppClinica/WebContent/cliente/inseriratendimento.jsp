@@ -23,14 +23,7 @@
 		<h:selectOneMenu id="crm" value="#{InserirAtendimentoClienteBeans.CRM}"> 
 			<f:selectItems value="#{InserirAtendimentoClienteBeans.medico}"  var="medico" itemLabel="#{medico.nome}" itemValue="#{medico.CRM}"/>
 		</h:selectOneMenu>
-  		<br/><%-- 
-  		<h:outputLabel value="Atendimento Realizado:" for="atdRealizado"/>
-  		<h:selectOneMenu id="atdRealizado" value="#{InserirAtendimentoClienteBeans.atdRealizado}">
-  			<f:selectItem itemValue="S" itemLabel="Sim"/>
-  			<f:selectItem itemValue="N" itemLabel="Nao"/>
-  		</h:selectOneMenu> --%>
   		<br/>
-		<br/>
 		<br/>
 		 <h:commandButton 
 			value="Confirmar" 

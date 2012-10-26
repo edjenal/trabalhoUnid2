@@ -5,11 +5,13 @@
 	auth="Container" 
 	type="javax.sql.DataSource"
 	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-	url="jdbc:sqlserver://10.2.2.28:1433;databaseName=clinica"
+	url="jdbc:sqlserver://192.168.57.2:1433;databaseName=clinica"
 	username="sa" 
 	password="123456" 
 	maxActive="20" 
 	maxIdle="10" 
 	maxWait="-1" />
-	<!-- url="jdbc:sqlserver://192.168.57.2:1433;databaseName=clinica" -->
+	<!-- url="jdbc:sqlserver://lab2a-prof:1433;databaseName=clinica" -->
+	<!-- url="jdbc:sqlserver://10.2.2.28:1433;databaseName=clinica" fabrica02 -->
+	<!-- url="jdbc:sqlserver://192.168.57.2:1433;databaseName=clinica" maquinavirtual-->
 </Context>

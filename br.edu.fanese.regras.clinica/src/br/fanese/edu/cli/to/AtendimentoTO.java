@@ -9,8 +9,11 @@ public class AtendimentoTO {
 	private Date dataConsulta;
 	private int codCliente;
 	private String CRM;
-	private String atdRealizado; 
+	private String atdRealizado;
 	
+	private String nomeCLiente;
+	private String nomeMedico;
+	private String atendimento;
 	
 	public int getCodAtendimento() {
 		return codAtendimento;
@@ -48,5 +51,24 @@ public class AtendimentoTO {
 	public void setAtdRealizado(String atdRealizado) {
 		this.atdRealizado = atdRealizado;
 	}
+	public String getNomeCLiente() {
+		return nomeCLiente;
+	}
+	public void setNomeCLiente(String nomeCLiente) {
+		this.nomeCLiente = nomeCLiente;
+	}
+	public String getNomeMedico() {
+		return nomeMedico;
+	}
+	public void setNomeMedico(String nomeMedico) {
+		this.nomeMedico = nomeMedico;
+	}
+	public String getAtendimento() {
+		return getAtdRealizado().equalsIgnoreCase("S") ? "Sim" : "N‹o";
+	}
+	public void setAtendimento(String atendimento) {
+		this.atendimento = atendimento;
+	}
+	
 	
 }

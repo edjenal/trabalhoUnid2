@@ -26,5 +26,17 @@
 		<managed-bean-class>managedbeans.InserirAtendimentoClienteBeans</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>ListarAtendimentoBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.ListarAtendimentoBeans</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>EditarAtendimentoBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.EditarAtendimentoBeans</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
 
 </faces-config>

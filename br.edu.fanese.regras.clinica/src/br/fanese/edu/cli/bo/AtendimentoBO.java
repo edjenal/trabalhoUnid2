@@ -7,17 +7,25 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.fanese.edu.cli.to.AtendimentoTO;
 
 public class AtendimentoBO {
 	private String SQL_create =	"insert into atendimentos(dataCadastro, dataConsulta, codCliente, crm, atdRealizado)" +
 			"values (getdate(), ?, ?, ?, ?)";
-	private String SQL_update = "update atendimentos set dataConsulta = ?, codCliente = ?, crm = ?, atdRealizado = ?" +
-			"where codAtendimento = ?";
+	private String SQL_update = "update atendimentos set atdRealizado = ? where codAtendimento = ?";
 	private String SQL_remove= "delete from atendimentos where codAtendimento = ?";
-	private String SQL_findByPrimayKey="select codAtendimento, dataCadastro, dataConsulta, codCliente, crm, atdRealizado  where codAtendimento = ?";
-	private String SQL_findAll="select codAtendimento, dataCadastro, dataConsulta, codCliente, crm, atdRealizado";
+	private String SQL_findByPrimayKey=
+			"select codAtendimento, dataCadastro, dataConsulta, atendimentos.codCliente, atendimentos.crm, atdRealizado," +
+			" clientes.nome as nomeCliente, medicos.nome as nomeMedico" +
+			" from atendimentos inner join clientes on clientes.codCliente =  atendimentos.codCliente "+
+			" inner join medicos on medicos.crm = atendimentos.crm where codAtendimento = ?";
+	private String SQL_findByAtendido=
+			"select codAtendimento, dataCadastro, dataConsulta, atendimentos.codCliente, atendimentos.crm, atdRealizado," +
+			" clientes.nome as nomeCliente, medicos.nome as nomeMedico" +
+			" from atendimentos inner join clientes on clientes.codCliente =  atendimentos.codCliente "+
+//			" inner join medicos on medicos.crm = atendimentos.crm where atdRealizado = ";
+			" inner join medicos on medicos.crm = atendimentos.crm";
+	private String SQL_findAll="select codAtendimento, dataCadastro, dataConsulta, codCliente, crm, atdRealizado form atendimentos";
 	
 	public boolean insert(Date dataConsulta, int codCliente, String crm, String atdRealizado) {
 		boolean retorno = true;
@@ -47,8 +55,11 @@ public class AtendimentoBO {
 				atendimentoTO.setCodAtendimento(rs.getInt("codAtendimento"));
 				atendimentoTO.setDataCadastro(rs.getDate("dataCadastro"));
 				atendimentoTO.setDataConsulta(rs.getDate("dataConsulta"));
+				atendimentoTO.setCodCliente(rs.getInt("codCliente"));
 				atendimentoTO.setCRM(rs.getString("crm"));
 				atendimentoTO.setAtdRealizado(rs.getString("atdRealizado"));
+				atendimentoTO.setNomeCLiente(rs.getString("nomeCLiente"));
+				atendimentoTO.setNomeMedico(rs.getString("nomeMedico"));
 				return atendimentoTO;
 				} else 
 					return null;
@@ -58,7 +69,7 @@ public class AtendimentoBO {
 		}
 	}
 	
-	public List<AtendimentoTO> findAllRacao() {
+	public List<AtendimentoTO> findAll() {
 		List<AtendimentoTO> resultado = new ArrayList<AtendimentoTO>();
 		try {
 			Connection con = Conexao.getConnection();
@@ -80,16 +91,13 @@ public class AtendimentoBO {
 		return resultado;
 	}
 	
-	public boolean updateRacao(Date dataConsulta, int codCliente, String crm, String atdRealizado, int codAtendimento){
+	public boolean update(String atdRealizado, int codAtendimento){
 		boolean retorno = true;
 		try{
 			Connection con = Conexao.getConnection();
 			PreparedStatement st = con.prepareStatement(SQL_update);
-			st.setDate(1, dataConsulta);
-			st.setInt(2, codCliente);
-			st.setString(3, crm);
-			st.setString(4, atdRealizado);
-			st.setInt(5, codAtendimento);
+			st.setString(1, atdRealizado);
+			st.setInt(2, codAtendimento);
 			retorno = st.execute();
 		} catch (Exception e){
 			e.printStackTrace();
@@ -98,7 +106,7 @@ public class AtendimentoBO {
 		return retorno;
 	}
 	
-	public boolean removeRacao(int cod){
+	public boolean remove(int cod){
 		try{
 			Connection con = Conexao.getConnection();
 			PreparedStatement st = con.prepareStatement(SQL_remove);
@@ -107,6 +115,31 @@ public class AtendimentoBO {
 		} catch (Exception e){
 			e.printStackTrace();
 			return false;
+		}
+	}
+	public List<AtendimentoTO> findByAtendido(String atendido){
+		atendido = "'"+atendido+"'";
+		try {
+			List<AtendimentoTO> resultado = new ArrayList<AtendimentoTO>();
+			Connection con = Conexao.getConnection();
+			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(SQL_findByAtendido+atendido);
+			ResultSet rs = st.executeQuery(SQL_findByAtendido);
+			while(rs.next()){
+				AtendimentoTO atendimentoTO = new AtendimentoTO();
+				atendimentoTO.setCodAtendimento(rs.getInt("codAtendimento"));
+				atendimentoTO.setDataCadastro(rs.getDate("dataCadastro"));
+				atendimentoTO.setDataConsulta(rs.getDate("dataConsulta"));
+				atendimentoTO.setCodCliente(rs.getInt("codCliente"));
+				atendimentoTO.setCRM(rs.getString("crm"));
+				atendimentoTO.setAtdRealizado(rs.getString("atdRealizado"));
+				atendimentoTO.setNomeCLiente(rs.getString("nomeCLiente"));
+				atendimentoTO.setNomeMedico(rs.getString("nomeMedico"));
+				resultado.add(atendimentoTO);
+			}
+			return resultado;
+		} catch (Exception e) {
+			return null;
 		}
 	}
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+	
+    <managed-bean>
+		<managed-bean-name>ListarClienteBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.ListarClienteBeans</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>NovoClienteBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.NovoClienteBeans</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>EditarClienteBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.EditarClienteBeans</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>InserirAtendimentoClienteBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.InserirAtendimentoClienteBeans</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>ListarAtendimentoBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.ListarAtendimentoBeans</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>EditarAtendimentoBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.EditarAtendimentoBeans</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>ListarAnamneseBeans</managed-bean-name>
+		<managed-bean-class>managedbeans.ListarAnamneseBeans</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+    
+</faces-config>

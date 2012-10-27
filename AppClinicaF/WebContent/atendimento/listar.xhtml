@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/tema.xhtml">
+	<ui:define name="content">
+	    Listar Atendimentos
+	    <f:view>
+		<h:form>
+			<h:selectOneMenu id="sexo" value="#{ListarAtendimentoBeans.atendido}">
+	  			<f:selectItem itemValue="S" itemLabel="Sim"/>
+	  			<f:selectItem itemValue="N" itemLabel="Não"/>
+	  		</h:selectOneMenu>
+	  		
+	  		<h:commandButton value="Filtrar" action="#{ListarAtendimentoBeans.filtrar}">
+	  			<f:param value="#{ListarAtendimentoBeans.atendido}" name="atendido"/>
+	  		</h:commandButton>
+	  		
+	  		<h:dataTable value="#{ListarAtendimentoBeans.atendimentos}" border="1" var="rs">
+				<f:facet name="header">Lista de Clientes</f:facet >
+				
+				<h:column>
+				    <f:facet name="header">
+				    	<h:outputText value="Código do atendimento" />
+				    </f:facet>        
+				    <h:outputText value="#{rs.codAtendimento}" />    
+				</h:column>
+				
+				<h:column>
+				    <f:facet name="header">
+				    	<h:outputText value="Data da consulta" />
+				    </f:facet>        
+				    <h:outputText value="#{rs.dataConsulta}" />    
+				</h:column>
+				
+				<h:column>
+				    <f:facet name="header">
+				    	<h:outputText value="Data do cadastro" />
+				    </f:facet>        
+				    <h:outputText value="#{rs.dataCadastro}" />    
+				</h:column>
+				
+				<h:column>
+				    <f:facet name="header">
+				    	<h:outputText value="Nome do médico" />
+				    </f:facet>        
+				    <h:outputText value="#{rs.nomeMedico}" />    
+				</h:column>
+				
+				<h:column>
+				    <f:facet name="header">
+				    	<h:outputText value="Nome cliente" />
+				    </f:facet>        
+				    <h:outputText value="#{rs.nomeCLiente}" />    
+				</h:column>
+				
+				<h:column>
+				    <f:facet name="header">
+				    	<h:outputText value="Atendido" />
+				    </f:facet>        
+				    <h:outputText value="#{rs.atendimento}" />    
+				</h:column>
+				
+				<h:column>
+		    		<f:facet name="header">
+		    			<h:outputText value="Funções" />
+		    		</f:facet>
+		    		<h:commandButton value="Editar" action="/atendimento/editar.xhtml">
+		    			<f:param value="#{rs.codAtendimento}" name="codigo"/>
+		    		</h:commandButton>
+				</h:column>
+	
+		
+			</h:dataTable >
+	  		
+		</h:form>	
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

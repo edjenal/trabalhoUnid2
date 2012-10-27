@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/tema.xhtml">
+	<ui:define name="content">
+	    Editar Atendimento
+	    <f:view>
+			<h:form>
+					<h:inputHidden value="#{EditarAtendimentoBeans.codAtendimento}"></h:inputHidden>
+					<h:outputLabel value="Nome do cliente:" />
+			  		<h:outputLabel value="#{EditarAtendimentoBeans.atendimenTO.nomeCLiente}"/>
+			  		<br/>
+			  		<h:outputLabel value="Nome do médico:" />
+			  		<h:outputLabel value="#{EditarAtendimentoBeans.atendimenTO.nomeMedico}"/>
+			  		<br/>
+			  		<h:outputLabel value="Data da consulta:" />
+			  		<h:outputLabel value="#{EditarAtendimentoBeans.atendimenTO.dataConsulta}"/>
+			  		<br/>
+			  		<h:outputLabel value="Data de cadastro: " />
+			  		<h:outputLabel value="#{EditarAtendimentoBeans.atendimenTO.dataCadastro}"/>
+			  		<br/>
+			  		<h:outputLabel value="Atedimento:" for="atedimento"/>
+			  		<h:selectOneMenu id="atedimento" value="#{EditarAtendimentoBeans.atendido}" disabled="#{EditarAtendimentoBeans.mostrar}">
+			  			<f:selectItem itemValue="S" itemLabel="Sim"/>
+			  			<f:selectItem itemValue="N" itemLabel="Não"/>
+			  		</h:selectOneMenu>
+			  		<h:commandButton 
+			  			value="Salvar" 
+			  			action="#{EditarAtendimentoBeans.Salvar}" disabled="#{EditarAtendimentoBeans.mostrar}">
+			  		</h:commandButton>
+			  		<br/>
+			  		<h:commandButton value="Anamnese" action="#{EditarAtendimentoBeans.Anamnese}" >
+		    			<f:param value="#{EditarAtendimentoBeans.codAtendimento}" name="codigo"/>
+		    		</h:commandButton>
+			  		<br/>
+			  		<h:commandButton 
+			  			value="Cancelar" 
+			  			action="/atendimento/listar.xhtml"
+			  			immediate="true" />
+			 </h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

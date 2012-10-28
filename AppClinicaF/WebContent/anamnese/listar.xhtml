@@ -13,15 +13,15 @@
 			<h:form>
 				<h:inputHidden value="#{ListarAnamneseBeans.codAtendimento}"/>
 				<h:outputLabel value="Descricao da Anamnese:" /><br/>
-		  		<h:inputTextarea value="#{ListarAnamneseBeans.descricao}" disabled="#{ListarAnamneseBeans.tem}"/>
+		  		<h:inputTextarea value="#{ListarAnamneseBeans.descricao}" disabled="#{ListarAnamneseBeans.tem}" rows="10" cols="50"/>
 		  		<br/> 
 		  		<h:commandButton 
 		  			value="Salvar" 
-		  			action="#{ListarAnamneseBeans.Salvar}" disabled="#{ListarAnamneseBeans.tem}">
-		  		</h:commandButton><br/>
+		  			action="#{ListarAnamneseBeans.Salvar}" rendered="#{!ListarAnamneseBeans.tem}" image="/imagens/salvar.png" >
+		  		</h:commandButton>
 		  		<h:commandButton 
 		  			value="Voltar" 
-		  			action="/atendimento/listar.xhtml"/>
+		  			action="/atendimento/listar.xhtml" image="/imagens/voltar.png"/>
 			</h:form>	
 		</f:view>
 	</ui:define>

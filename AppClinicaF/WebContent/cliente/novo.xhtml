@@ -93,7 +93,11 @@
 		  		<br/>
 		  		 <h:commandButton 
 		  			value="Cadastrar" 
-		  			action="#{NovoClienteBeans.Inserir}" />
+		  			action="#{NovoClienteBeans.Inserir}" image="/imagens/cadastrar.png"/>
+	  			<h:commandButton 
+		  			value="Cancelar" 
+		  			action="/cliente/listar.xhtml"
+		  			immediate="true" image="/imagens/cancelar.png"/>
 			</h:form>	
 		</f:view>
 	</ui:define>

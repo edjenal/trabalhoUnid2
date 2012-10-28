@@ -11,7 +11,7 @@
 			    
 		<f:view>
 		<h:form>
-			<h:commandButton value="Novo" action="/cliente/novo.xhtml"/>
+			<h:commandButton value="Novo" action="/cliente/novo.xhtml" image="/imagens/novo.png"/>
 			<h:dataTable value="#{ListarClienteBeans.clientes}" border="1" var="rs">
 					<f:facet name="header">Lista de Clientes</f:facet >
 					
@@ -33,13 +33,13 @@
 			    		<f:facet name="header">
 			    			<h:outputText value="Funções" />
 			    		</f:facet>
-			    		<h:commandButton value="Atendimento" action="/cliente/inseriratendimento.xhtml">
+			    		<h:commandButton value="Atendimento" action="/cliente/inseriratendimento.xhtml" image="/imagens/atendimento.png">
 			    			<f:param value="#{rs.codCliente}" name="codigo"/>
 			    		</h:commandButton>
-			    		<h:commandButton value="Alterar" action="/cliente/editar.xhtml">
+			    		<h:commandButton value="Editar" action="/cliente/editar.xhtml" image="/imagens/editar.png">
 			    			<f:param value="#{rs.codCliente}" name="codigo"/>
 			    		</h:commandButton>
-			    		<h:commandButton value="Deletar" action="#{ListarClienteBeans.deletar}" onclick="if (!confirm('Quer realmente deletar esse Cliente?')) return false">
+			    		<h:commandButton value="Deletar" action="#{ListarClienteBeans.deletar}" onclick="if (!confirm('Quer realmente deletar esse Cliente?')) return false" image="/imagens/deletar.png">
 			    			<f:param value="#{rs.codCliente}" name="codigo"/>
 			    		</h:commandButton>
 					</h:column>

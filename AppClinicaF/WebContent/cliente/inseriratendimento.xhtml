@@ -16,12 +16,8 @@
 				<br/>
 				<h:outputLabel value="Data da consulta:" for="dataConsulta"/>
 				<p:inputMask value="#{InserirAtendimentoClienteBeans.dataConsulta}" mask="9999-99-99" style="width:150px; height:12px;"/>
-		  		<!-- <h:inputText id="dataConsulta" value="#{InserirAtendimentoClienteBeans.dataConsulta}">
-		  			<f:convertDateTime type="date" dateStyle="short" pattern="yyyy-MM-dd"/>
-		  		</h:inputText> -->
 		  		<br/>
 		  		
-				
 				<h:outputLabel value="Medico:" for="crm"/>
 				<h:selectOneMenu id="crm" value="#{InserirAtendimentoClienteBeans.CRM}"> 
 					<f:selectItems value="#{InserirAtendimentoClienteBeans.medico}"  var="medico" itemLabel="#{medico.nome}" itemValue="#{medico.CRM}"/>
@@ -30,13 +26,13 @@
 				<br/>
 				 <h:commandButton 
 					value="Confirmar" 
-					action="#{InserirAtendimentoClienteBeans.Inserir}" >
+					action="#{InserirAtendimentoClienteBeans.Inserir}" image="/imagens/confirmar.png">
 					<f:param value="#{InserirAtendimentoClienteBeans.codigo}" name="codigo"/>	
 				</h:commandButton>
 				<h:commandButton 
 					value="Cancelar" 
 					action="/cliente/listar.xhtml"
-					immediate="true" />
+					immediate="true" image="/imagens/cancelar.png"/>
 			</h:form>
 		</f:view>
 	</ui:define>

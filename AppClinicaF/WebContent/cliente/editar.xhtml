@@ -95,13 +95,13 @@
 		  		<br/>
 		  		 <h:commandButton 
 		  			value="Salvar" 
-		  			action="#{EditarClienteBeans.Salvar}" >
-		  			<f:param value="#{EditarClienteBeans.codigo}" name="codigo"/>	
+		  			action="#{EditarClienteBeans.Salvar}" image="/imagens/salvar.png">
+		  			<f:param value="#{EditarClienteBeans.codigo}" name="codigo" />	
 		  		</h:commandButton>
 		  		<h:commandButton 
 		  			value="Cancelar" 
 		  			action="/cliente/listar.xhtml"
-		  			immediate="true" />
+		  			immediate="true" image="/imagens/cancelar.png"/>
 			</h:form>
 		</f:view>
 	</ui:define>

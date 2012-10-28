@@ -8,15 +8,16 @@
 
 <ui:composition template="/tema.xhtml">
 	<ui:define name="content">
-	    Listar Atendimentos
+	    
 	    <f:view>
 		<h:form>
+			Listar atendimentos por atendidos? 
 			<h:selectOneMenu id="sexo" value="#{ListarAtendimentoBeans.atendido}">
 	  			<f:selectItem itemValue="S" itemLabel="Sim"/>
 	  			<f:selectItem itemValue="N" itemLabel="Não"/>
-	  		</h:selectOneMenu>
+	  		</h:selectOneMenu><br/>
 	  		
-	  		<h:commandButton value="Filtrar" action="#{ListarAtendimentoBeans.filtrar}">
+	  		<h:commandButton value="Filtrar" action="#{ListarAtendimentoBeans.filtrar}" image="/imagens/atualizar.png">
 	  			<f:param value="#{ListarAtendimentoBeans.atendido}" name="atendido"/>
 	  		</h:commandButton>
 	  		
@@ -25,7 +26,7 @@
 				
 				<h:column>
 				    <f:facet name="header">
-				    	<h:outputText value="Código do atendimento" />
+				    	<h:outputText value="Código" />
 				    </f:facet>        
 				    <h:outputText value="#{rs.codAtendimento}" />    
 				</h:column>
@@ -69,7 +70,7 @@
 		    		<f:facet name="header">
 		    			<h:outputText value="Funções" />
 		    		</f:facet>
-		    		<h:commandButton value="Editar" action="/atendimento/editar.xhtml">
+		    		<h:commandButton value="Editar" action="/atendimento/editar.xhtml" image="/imagens/editar.png">
 		    			<f:param value="#{rs.codAtendimento}" name="codigo"/>
 		    		</h:commandButton>
 				</h:column>

@@ -29,19 +29,18 @@
 			  			<f:selectItem itemValue="S" itemLabel="Sim"/>
 			  			<f:selectItem itemValue="N" itemLabel="Não"/>
 			  		</h:selectOneMenu>
+			  		<br/>
 			  		<h:commandButton 
 			  			value="Salvar" 
-			  			action="#{EditarAtendimentoBeans.Salvar}" disabled="#{EditarAtendimentoBeans.mostrar}">
+			  			action="#{EditarAtendimentoBeans.Salvar}" rendered="#{!EditarAtendimentoBeans.mostrar}" image="/imagens/salvar.png">
 			  		</h:commandButton>
-			  		<br/>
-			  		<h:commandButton value="Anamnese" action="#{EditarAtendimentoBeans.Anamnese}" >
+			  		<h:commandButton value="Anamnese" action="#{EditarAtendimentoBeans.Anamnese}" image="/imagens/anamnese.png">
 		    			<f:param value="#{EditarAtendimentoBeans.codAtendimento}" name="codigo"/>
 		    		</h:commandButton>
-			  		<br/>
 			  		<h:commandButton 
 			  			value="Cancelar" 
 			  			action="/atendimento/listar.xhtml"
-			  			immediate="true" />
+			  			immediate="true" image="/imagens/cancelar.png"/>
 			 </h:form>
 		</f:view>
 	</ui:define>

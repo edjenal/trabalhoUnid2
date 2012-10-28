@@ -16,7 +16,7 @@
     <ui:insert name="header">
     	<h3 style="font-style: italic;">Clínica XxX</h3>
     	<p:breadCrumb>
-			<p:menuitem value="Cliente" url="/tema.xhtml" />
+			<p:menuitem value="Home" url="/index.xhtml" />
 			<p:menuitem value="Cliente" url="/cliente/listar.xhtml" />
 			<p:menuitem value="Atendimento" url="/atendimento/listar.xhtml" />
 		</p:breadCrumb>
@@ -27,35 +27,15 @@
 
 <div id="content">
   <ui:insert name="content">
-    	<u>Trabalho de jsf da unidade 2</u><br/>
-		<li style="type=circle" > 1</li>
-		  Construir um CRUD para Clientes todos os clientes. A edidcao e inserça ̃odo cliente deve seguir o seguinte:<br/>
-		  O campo sexo deve ser um List<br/>
-		  O campo UF deve ser um List<br/>
-		  O campo codConvenio deve ser um List buscando os valores da tabela de<br/>
-		  convênios<br/>
-		  <p></p>
-		<li style="type=circle" >2</li>
-		  Na tela de clientes, o usuário pode escolher um cliente e cadastrar um atendimento para ele.<br/>
-		  Após a escolha do cliente, deve-se abrir uma outra tela para cadastro do atendimento.<br/>
-		  No cadastro de atendimento a dataCadastro deve ser pega do sistema, 
-		  a dataConsulta será a data em que o cliente será atendido e o crm deve ser informado
-		  por um List ordenado pelo nome do médico.<br/>
-		  O campo atdRealizado deve ser informado com valor 'N'<br/>
-		  <p></p>
-		<li style="type=circle" >3</li>
-		  Criar uma tela de Atendimentos:<br/>
-		  a. Uma lista com os atendimentos filtrados por “Atendidos” ou “Não Atendidos”<br/>
-		  b. Ao selecionar um atendimento, o usuário (médico) poderá mudar somente o campo<br/>
-		  atdRealizado e cadastrar uma anmnese.<br/> 
-		  A mudança ocorrerá somente se o atendimento for “Não ”.<br/>
-		  Se o atendimento já foi realizado, não alterar nenhum valor<br/>
-		  <p></p>
+    	
   </ui:insert>
 </div>
 
 <div id="footer">
   <ui:insert name="footer">
+  		<br/>
+  		<p></p>
+  		<br/>
     	<font style="font-style: italic;">Desenvolvido por Acson, Edjenal, Ramom.</font>
   </ui:insert>
 </div>

@@ -12,18 +12,17 @@
 
 <h:body>
 
-<div id="header">
+<div id="header" style="background-image: url('/AppClinicaF/imagens/background.gif');">
     <ui:insert name="header">
-    	<h3 style="font-style: italic;">Clínica XxX</h3>
+    	<h2 style="font-style: italic; color:#708090; padding: 2% 2% 0%">Clínica Xpto</h2>
     	<p:breadCrumb>
 			<p:menuitem value="Home" url="/index.xhtml" />
 			<p:menuitem value="Cliente" url="/cliente/listar.xhtml" />
 			<p:menuitem value="Atendimento" url="/atendimento/listar.xhtml" />
 		</p:breadCrumb>
-		<br/>
     </ui:insert>
 </div>
-
+<br/>
 
 <div id="content">
   <ui:insert name="content">
@@ -31,12 +30,10 @@
   </ui:insert>
 </div>
 
-<div id="footer">
+<br/>
+<div id="footer" style="background-image: url('/AppClinicaF/imagens/background.gif');">
   <ui:insert name="footer">
-  		<br/>
-  		<p></p>
-  		<br/>
-    	<font style="font-style: italic;">Desenvolvido por Acson, Edjenal, Ramom.</font>
+    	<font style="font-style: italic;">Desenvolvido por Acson, Edjenal, Ramon.</font>
   </ui:insert>
 </div>
 

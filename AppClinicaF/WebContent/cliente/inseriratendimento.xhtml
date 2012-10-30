@@ -15,7 +15,7 @@
 				<h:inputHidden value="#{InserirAtendimentoClienteBeans.codigo}"/>
 				<br/>
 				<h:outputLabel value="Data da consulta:" for="dataConsulta"/>
-				<p:inputMask value="#{InserirAtendimentoClienteBeans.dataConsulta}" mask="9999-99-99" style="width:150px; height:12px;"/>
+		  		<p:calendar value="#{InserirAtendimentoClienteBeans.dataConsulta}" id="popupCal" effect="slideDown" size="6"/>
 		  		<br/>
 		  		
 				<h:outputLabel value="Medico:" for="crm"/>

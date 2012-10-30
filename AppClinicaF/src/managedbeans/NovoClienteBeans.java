@@ -1,9 +1,8 @@
 package managedbeans;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
+import java.util.Date;
 
 import br.fanese.edu.cli.bo.ClienteBO;
 import br.fanese.edu.cli.bo.ConvenioBO;
@@ -14,7 +13,7 @@ public class NovoClienteBeans {
 	private int codCliente;
 	private String nome;
 	private String sexo;
-	private String dataNascimento;
+	private Date dataNascimento;
     private String logradouro;
     private String cep;
     private String cidade;
@@ -49,10 +48,10 @@ public class NovoClienteBeans {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public String getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getLogradouro() {
@@ -143,12 +142,11 @@ public class NovoClienteBeans {
 	}
 	public String Inserir(){
 		try{
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			java.sql.Date data = new java.sql.Date(format.parse(dataNascimento).getTime());
+			java.sql.Date data = new java.sql.Date(dataNascimento.getTime());
 			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.insert(nome, sexo, data, logradouro, cep, cidade, UF, telefoneResidencial, 
-					telefoneCelular, qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
-					matriculaConvenio, validadeConvenio);
+			clienteBO.insert(nome, sexo, data, logradouro, cep.replaceAll("[^0-9]", ""), cidade, UF, telefoneResidencial.replaceAll("[^0-9]", ""), 
+					telefoneCelular.replaceAll("[^0-9]", ""), qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
+					matriculaConvenio, validadeConvenio.replaceAll("[^0-9]", ""));
 			return "listar";
 		} catch (Exception e) {
 			e.printStackTrace();

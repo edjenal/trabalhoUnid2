@@ -2,7 +2,7 @@ package managedbeans;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+import java.util.Date;
 import javax.faces.context.FacesContext;
 
 import br.fanese.edu.cli.bo.AtendimentoBO;
@@ -15,7 +15,7 @@ public class InserirAtendimentoClienteBeans {
 	
 	private List<MedicoTO> medico;
 
-	private String dataConsulta;
+	private Date dataConsulta;
 	private String CRM;
 	
 
@@ -40,11 +40,11 @@ public class InserirAtendimentoClienteBeans {
 		this.medico = medico;
 	}
 
-	public String getDataConsulta() {
+	public Date getDataConsulta() {
 		return dataConsulta;
 	}
 
-	public void setDataConsulta(String dataConsulta) {
+	public void setDataConsulta(Date dataConsulta) {
 		this.dataConsulta = dataConsulta;
 	}
 
@@ -58,8 +58,7 @@ public class InserirAtendimentoClienteBeans {
 	
 	public String Inserir(){
 		try{
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			java.sql.Date data = new java.sql.Date(format.parse(dataConsulta).getTime());
+			java.sql.Date data = new java.sql.Date(dataConsulta.getTime());
 			AtendimentoBO atendimentoBO = new AtendimentoBO();
 			atendimentoBO.insert(data, codigo, CRM, "N");
 			return "listar";

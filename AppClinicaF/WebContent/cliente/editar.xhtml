@@ -9,90 +9,115 @@
 
 <ui:composition template="/tema.xhtml">
 	<ui:define name="content">
-	    Editar Cliente
+	    
 		<f:view>
 			<h:form>
-				<h:outputLabel value="Nome:" for="nome"/>
-		  		<h:inputText id="nome" value="#{EditarClienteBeans.nome}"/>
-		  		<br/>
-		  		<h:outputLabel value="Sexo:" for="sexo"/>
-		  		<h:selectOneMenu id="sexo" value="#{EditarClienteBeans.sexo}">
-		  			<f:selectItem itemValue="M" itemLabel="Masculino"/>
-		  			<f:selectItem itemValue="F" itemLabel="Feminino"/>
-		  		</h:selectOneMenu>
-		  		<br/>
-		  		<h:outputLabel value="Data De Nascimento:" for="dataNascimento"/>
-		  		<p:inputMask value="#{EditarClienteBeans.dataNascimento}" mask="9999-99-99" style="width:150px; height:12px;"/>
-		  		<!-- <h:inputText id="dataNascimento" value="#{EditarClienteBeans.dataNascimento}">
-		  			<f:convertDateTime type="date" dateStyle="short" pattern="yyyy-MM-dd"/>
-		  		</h:inputText> -->
-		  		<br/>
-		  		<h:outputLabel value="Logradouro:" for="logradouro"/>
-		  		<h:inputText id="logradouro" value="#{EditarClienteBeans.logadouro}"/>
-		  		<br/>
-		  		<h:outputLabel value="CEP:" for="cep"/>
-		  		<h:inputText id="cep" value="#{EditarClienteBeans.cep}"/>
-		  		<br/>
-		  		<h:outputLabel value="Cidade:" for="cidade"/>
-		  		<h:inputText id="cidade" value="#{EditarClienteBeans.cidade}"/>
-		  		<br/>
-		  		<h:outputLabel value="UF:" for="uf"/>
-		  		<h:selectOneMenu id="uf" value="#{EditarClienteBeans.UF}">
-		  			<f:selectItem itemValue="AC" itemLabel="Acre"/>
-		  			<f:selectItem itemValue="AL" itemLabel="Alagoas"/>
-		  			<f:selectItem itemValue="AM" itemLabel="Amazonas"/>
-		  			<f:selectItem itemValue="AP" itemLabel="Amapa"/>
-		  			<f:selectItem itemValue="BA" itemLabel="Bahia"/>
-		  			<f:selectItem itemValue="CE" itemLabel="Ceara"/>
-		  			<f:selectItem itemValue="DF" itemLabel="Distrito Federal"/>
-		  			<f:selectItem itemValue="ES" itemLabel="Espirito Santo"/>
-		  			<f:selectItem itemValue="MA" itemLabel="Maranhao"/>
-		  			<f:selectItem itemValue="MG" itemLabel="Minas Gerais"/>
-		  			<f:selectItem itemValue="MS" itemLabel="Mato Grosso do Sul"/>
-		  			<f:selectItem itemValue="MT" itemLabel="Mato Grosso"/>
-		  			<f:selectItem itemValue="PA" itemLabel="Para"/>
-		  			<f:selectItem itemValue="PB" itemLabel="Paraiba"/>
-		  			<f:selectItem itemValue="PE" itemLabel="Pernambuco"/>
-		  			<f:selectItem itemValue="PI" itemLabel="Piaui"/>
-		  			<f:selectItem itemValue="PR" itemLabel="Parana"/>
-		  			<f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro"/>
-		  			<f:selectItem itemValue="RN" itemLabel="Rio Grande do Norte"/>
-		  			<f:selectItem itemValue="RO" itemLabel="Rondonia"/>
-		  			<f:selectItem itemValue="RR" itemLabel="Roraima"/>
-		  			<f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul"/>
-		  			<f:selectItem itemValue="SC" itemLabel="Santa Catarina"/>
-		  			<f:selectItem itemValue="SE" itemLabel="Sergipe"/>
-		  			<f:selectItem itemValue="SP" itemLabel="Sao Paulo"/>
-		  			<f:selectItem itemValue="TO" itemLabel="Tocantins"/>
-		  		</h:selectOneMenu>
-		  		<br/>
-		  		<h:outputLabel value="Telefone Residencial:" for="telefoneResidencial"/>
-		  		<h:inputText id="telefoneResidencial" value="#{EditarClienteBeans.telefoneResidencial}"/>
-		  		<br/>
-		  		<h:outputLabel value="Telefone Celular:" for="telefoneCelular"/>
-		  		<h:inputText id="telefoneCelular" value="#{EditarClienteBeans.telefoneCelular}"/>
-		  		<br/>
-		  		<h:outputLabel value="Quantidade de dependentes:" for="qtdDependentes"/>
-		  		<h:inputText id="qtdDependentes" value="#{EditarClienteBeans.qtdDependentes}"/>
-		  		<br/>
-		  		<h:outputLabel value="Identidade:" for="identidade"/>
-		  		<h:inputText id="identidade" value="#{EditarClienteBeans.identidade}"/>
-		  		<br/>
-		  		<h:outputLabel value="Orgao Expedidor:" for="orgaoExpedidor"/>
-		  		<h:inputText id="orgaoExpedidor" value="#{EditarClienteBeans.orgaoExpedidor}"/>
-		  		<br/>
-		  		<h:outputLabel value="Convenio:" for="codConvenio"/>
-		  		<h:selectOneMenu id="codConvenio" value="#{EditarClienteBeans.codConvenio}"> 
-					<f:selectItems value="#{EditarClienteBeans.convenio}"  var="convenio" itemLabel="#{convenio.descricao}" itemValue="#{convenio.codConvenio}"/>
-				</h:selectOneMenu>
-		  		<br/>
-		  		<h:outputLabel value="Matricula do convenio:" for="matricula"/>
-		  		<h:inputText id="matricula" value="#{EditarClienteBeans.matriculaConvenio}"/>
-		  		<br/>
-		  		<h:outputLabel value="Validade do convenio:" for="validade"/>
-		  		<h:inputText id="validade" value="#{EditarClienteBeans.validadeConvenio}"/>
-		  		<br/>
-		  		<br/>
+				<table>
+					<tr>
+						<th>Editar Cliente</th>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Nome:" for="nome"/></td>
+						<td><h:inputText id="nome" value="#{EditarClienteBeans.nome}"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Sexo:" for="sexo"/></td>
+						<td>
+							<h:selectOneMenu id="sexo" value="#{EditarClienteBeans.sexo}">
+					  			<f:selectItem itemValue="M" itemLabel="Masculino"/>
+					  			<f:selectItem itemValue="F" itemLabel="Feminino"/>
+					  		</h:selectOneMenu>
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Data De Nascimento:" for="dataNascimento"/></td>
+						<td>
+						<!-- <p:inputMask value="#{EditarClienteBeans.dataNascimento}" mask="9999/99/99" size="6"/> -->
+						<p:calendar value="#{EditarClienteBeans.dataNascimento}" id="popupCal" effect="slideDown" size="6"/>
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Logradouro:" for="logradouro"/></td>
+						<td><h:inputTextarea id="logradouro" value="#{EditarClienteBeans.logadouro}" rows="5" cols="50"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="CEP:" for="cep"/></td>
+						<td><p:inputMask id="cep" value="#{EditarClienteBeans.cep}" mask="99.999-999" size="8"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Cidade:" for="cidade"/></td>
+						<td><h:inputText id="cidade" value="#{EditarClienteBeans.cidade}"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="UF:" for="uf"/></td>
+						<td>
+							<h:selectOneMenu id="uf" value="#{EditarClienteBeans.UF}">
+					  			<f:selectItem itemValue="AC" itemLabel="Acre"/>
+					  			<f:selectItem itemValue="AL" itemLabel="Alagoas"/>
+					  			<f:selectItem itemValue="AM" itemLabel="Amazonas"/>
+					  			<f:selectItem itemValue="AP" itemLabel="Amapa"/>
+					  			<f:selectItem itemValue="BA" itemLabel="Bahia"/>
+					  			<f:selectItem itemValue="CE" itemLabel="Ceara"/>
+					  			<f:selectItem itemValue="DF" itemLabel="Distrito Federal"/>
+					  			<f:selectItem itemValue="ES" itemLabel="Espirito Santo"/>
+					  			<f:selectItem itemValue="MA" itemLabel="Maranhao"/>
+					  			<f:selectItem itemValue="MG" itemLabel="Minas Gerais"/>
+					  			<f:selectItem itemValue="MS" itemLabel="Mato Grosso do Sul"/>
+					  			<f:selectItem itemValue="MT" itemLabel="Mato Grosso"/>
+					  			<f:selectItem itemValue="PA" itemLabel="Para"/>
+					  			<f:selectItem itemValue="PB" itemLabel="Paraiba"/>
+					  			<f:selectItem itemValue="PE" itemLabel="Pernambuco"/>
+					  			<f:selectItem itemValue="PI" itemLabel="Piaui"/>
+					  			<f:selectItem itemValue="PR" itemLabel="Parana"/>
+					  			<f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro"/>
+					  			<f:selectItem itemValue="RN" itemLabel="Rio Grande do Norte"/>
+					  			<f:selectItem itemValue="RO" itemLabel="Rondonia"/>
+					  			<f:selectItem itemValue="RR" itemLabel="Roraima"/>
+					  			<f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul"/>
+					  			<f:selectItem itemValue="SC" itemLabel="Santa Catarina"/>
+					  			<f:selectItem itemValue="SE" itemLabel="Sergipe"/>
+					  			<f:selectItem itemValue="SP" itemLabel="Sao Paulo"/>
+					  			<f:selectItem itemValue="TO" itemLabel="Tocantins"/>
+					  		</h:selectOneMenu>
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Telefone Residencial:" for="telefoneResidencial"/></td>
+						<td><p:inputMask id="telefoneResidencial" value="#{EditarClienteBeans.telefoneResidencial}" mask="(99)9999-9999" size="10"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Telefone Celular:" for="telefoneCelular"/></td>
+						<td><p:inputMask id="telefoneCelular" value="#{EditarClienteBeans.telefoneCelular}" mask="(99)9999-9999" size="10"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Quantidade de dependentes:" for="qtdDependentes"/></td>
+						<td><h:inputText id="qtdDependentes" value="#{EditarClienteBeans.qtdDependentes}"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Identidade:" for="identidade"/></td>
+						<td><h:inputText id="identidade" value="#{EditarClienteBeans.identidade}"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Orgao Expedidor:" for="orgaoExpedidor"/></td>
+						<td><h:inputText id="orgaoExpedidor" value="#{EditarClienteBeans.orgaoExpedidor}"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Convenio:" for="codConvenio"/></td>
+						<td>
+							<h:selectOneMenu id="codConvenio" value="#{EditarClienteBeans.codConvenio}"> 
+								<f:selectItems value="#{EditarClienteBeans.convenio}"  var="convenio" itemLabel="#{convenio.descricao}" itemValue="#{convenio.codConvenio}"/>
+							</h:selectOneMenu>
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Matricula do convenio:" for="matricula"/></td>
+						<td><h:inputText id="matricula" value="#{EditarClienteBeans.matriculaConvenio}"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Validade do convenio:" for="validade"/></td>
+						<td><p:inputMask id="validade" value="#{EditarClienteBeans.validadeConvenio}" mask="99/9999" size="6"/></td>
+					</tr>
+				</table>
 		  		 <h:commandButton 
 		  			value="Salvar" 
 		  			action="#{EditarClienteBeans.Salvar}" image="/imagens/salvar.png">

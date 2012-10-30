@@ -1,6 +1,7 @@
 package br.fanese.edu.cli.to;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class ClienteTO {
 	
@@ -48,6 +49,8 @@ public class ClienteTO {
 		this.sexoTela = sexoTela;
 	}
 	public Date getDataNascimento() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+		String texto = df.format(dataNascimento);
 		return dataNascimento;
 	}
 	public void setDataNascimento(Date dataNascimento) {

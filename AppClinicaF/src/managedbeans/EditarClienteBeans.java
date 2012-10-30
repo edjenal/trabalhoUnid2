@@ -1,5 +1,6 @@
 package managedbeans;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,7 @@ public class EditarClienteBeans {
 	private List<ConvenioTO> convenio;
 	private String nome;
 	private String sexo;
-	private String dataNascimento;
+	private Date dataNascimento;
     private String logadouro;
     private String cep;
     private String cidade;
@@ -37,7 +38,7 @@ public class EditarClienteBeans {
 		cliente = clienteBO.findByPrimaryKey(getCodigo());
 		nome = cliente.getNome();
 		sexo = cliente.getSexo();
-		dataNascimento = cliente.getDataNascimento().toString();
+		dataNascimento = cliente.getDataNascimento();
 		logadouro = cliente.getLogadouro();
 		cep = cliente.getCep();
 		cidade = cliente.getCidade();
@@ -86,10 +87,10 @@ public class EditarClienteBeans {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public String getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getLogadouro() {
@@ -172,12 +173,12 @@ public class EditarClienteBeans {
 	}
 	public String Salvar(){
 		try{
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			java.sql.Date data = new java.sql.Date(format.parse(dataNascimento).getTime());
+			//.replaceAll("[^0-9]", "")
+			java.sql.Date data = new java.sql.Date(dataNascimento.getTime());
 			ClienteBO clienteBO = new ClienteBO();
-			clienteBO.update(nome, sexo, data, logadouro, cep, cidade, UF, telefoneResidencial, 
-					telefoneCelular, qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
-					matriculaConvenio, validadeConvenio, codigo);
+			clienteBO.update(nome, sexo, data, logadouro, cep.replaceAll("[^0-9]", ""), cidade, UF, telefoneResidencial.replaceAll("[^0-9]", ""), 
+					telefoneCelular.replaceAll("[^0-9]", ""), qtdDependentes, identidade, orgaoExpedidor, codConvenio, 
+					matriculaConvenio, validadeConvenio.replaceAll("[^0-9]", ""), codigo);
 			return "listar";
 		} catch (Exception e) {
 			e.printStackTrace();

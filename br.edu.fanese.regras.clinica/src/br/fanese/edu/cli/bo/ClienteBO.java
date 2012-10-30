@@ -31,9 +31,10 @@ public class ClienteBO {
 			String cep, String cidade, String UF, String telefoneResidencial, String telefoneCelular, 
 			int qtdDependentes, String identidade, String orgaoExpedidor, int codConvenio, String matriculaConvenio, String validadeConvenio) {
 		boolean retorno = true;
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
 		try {
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_create);
+			st = con.prepareStatement(SQL_create);
 			st.setString(1, nome);
 			st.setString(2, sexo);
 			st.setDate(3, dataNascimento);
@@ -54,16 +55,26 @@ public class ClienteBO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			retorno = false;
+		} finally{
+			try{
+				st.close();
+				con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return retorno;
 	}
 		
 	public ClienteTO findByPrimaryKey(int cod){
+		
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
 		try{
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_findByPrimayKey);
+			st = con.prepareStatement(SQL_findByPrimayKey);
 			st.setInt(1, cod);
-			ResultSet rs = st.executeQuery();
+			rs = st.executeQuery();
 			if(rs.next()){
 				ClienteTO clienteTO = new ClienteTO();
 				clienteTO.setCodCliente(rs.getInt("codCliente"));
@@ -89,15 +100,25 @@ public class ClienteBO {
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
+		} finally{
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public List<ClienteTO> findAll() {
 		List<ClienteTO> resultado = new ArrayList<ClienteTO>();
+		Connection con = Conexao.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
 		try {
-			Connection con = Conexao.getConnection();
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(SQL_findAll);
+			st = con.createStatement();
+			rs = st.executeQuery(SQL_findAll);
 			while (rs.next()) {
 				ClienteTO clienteTO = new ClienteTO();
 				clienteTO.setCodCliente(rs.getInt("codCliente"));
@@ -122,6 +143,14 @@ public class ClienteBO {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally{
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return resultado;
 	}
@@ -130,9 +159,10 @@ public class ClienteBO {
 			String cep, String cidade, String UF, String telefoneResidencial, String telefoneCelular, 
 			int qtdDependentes, String identidade, String orgaoExpedidor, int codConvenio, String matriculaConvenio, String validadeConvenio, int codCliente){
 		boolean retorno = true;
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
 		try{
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_update);
+			st = con.prepareStatement(SQL_update);
 			st.setString(1, nome);
 			st.setString(2, sexo);
 			st.setDate(3, dataNascimento);
@@ -153,19 +183,34 @@ public class ClienteBO {
 		} catch (Exception e){
 			e.printStackTrace();
 			retorno=false;
+		} finally {
+			try{
+				st.close();
+				con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return retorno;
 	}
 	
 	public boolean remove(int cod){
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
 		try{
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_remove);
+			st = con.prepareStatement(SQL_remove);
 			st.setInt(1, cod);
 			return st.execute();
 		} catch (Exception e){
 			e.printStackTrace();
 			return false;
+		} finally{
+			try {
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

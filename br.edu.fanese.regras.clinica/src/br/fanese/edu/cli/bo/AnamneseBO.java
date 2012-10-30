@@ -22,9 +22,12 @@ public class AnamneseBO {
 	
 	public boolean insert(int codAtendimento, String descricao) {
 		boolean retorno = true;
+		
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
+		
 		try {
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_create);
+			st = con.prepareStatement(SQL_create);
 			st.setInt(1, codAtendimento);
 			st.setString(2, descricao);
 			retorno = st.execute();
@@ -32,16 +35,26 @@ public class AnamneseBO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			retorno = false;
+		} finally {
+			try{
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		return retorno;
 	}
 	
 	public AnamneseTO findByPrimaryKey(int cod){
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
 		try{
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_findByPrimayKey);
+			st = con.prepareStatement(SQL_findByPrimayKey);
 			st.setInt(1, cod);
-			ResultSet rs = st.executeQuery();
+			rs = st.executeQuery();
 			if(rs.next()){
 				AnamneseTO anamneseTO = new AnamneseTO();
 				anamneseTO.setCodAnamnese(rs.getInt("codAnamnese"));
@@ -53,14 +66,24 @@ public class AnamneseBO {
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
+		} finally {
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public AnamneseTO findByCodAtendimento(int codAtendimento){
+		Connection con = Conexao.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
 		try {
-			Connection con = Conexao.getConnection();
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(SQL_findByCodAtendimento+codAtendimento);
+			st = con.createStatement();
+			rs = st.executeQuery(SQL_findByCodAtendimento+codAtendimento);
 			if(rs.next()){
 				AnamneseTO anamneseTO = new AnamneseTO();
 				anamneseTO.setCodAnamnese(rs.getInt("codAnamnese"));
@@ -71,16 +94,27 @@ public class AnamneseBO {
 				return null;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
+		} finally{
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public List<AnamneseTO> findAll() {
 		List<AnamneseTO> resultado = new ArrayList<AnamneseTO>();
+		Connection con = Conexao.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
 		try {
-			Connection con = Conexao.getConnection();
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(SQL_findAll);
+			st = con.createStatement();
+			rs = st.executeQuery(SQL_findAll);
 			while (rs.next()) {
 				AnamneseTO anamneseTO = new AnamneseTO();
 				anamneseTO.setCodAnamnese(rs.getInt("codAnamnese"));
@@ -89,8 +123,15 @@ public class AnamneseBO {
 				resultado.add(anamneseTO);
 		    }
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally{
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return resultado;
 	}

@@ -14,10 +14,12 @@ public class ConvenioBO {
 	
 	public List<ConvenioTO> findAll() {
 		List<ConvenioTO> resultado = new ArrayList<ConvenioTO>();
+		Connection con = Conexao.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
 		try {
-			Connection con = Conexao.getConnection();
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(SQL_findAll);
+			st = con.createStatement();
+			rs = st.executeQuery(SQL_findAll);
 			while (rs.next()) {
 				ConvenioTO convenio = new ConvenioTO();
 				convenio.setCodConvenio(rs.getInt(1));
@@ -26,7 +28,15 @@ public class ConvenioBO {
 		    }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+		} finally{
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return resultado;
 	}

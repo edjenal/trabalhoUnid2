@@ -14,10 +14,12 @@ public class MedicoBO {
 	
 	public List<MedicoTO> findAll() {
 		List<MedicoTO> resultado = new ArrayList<MedicoTO>();
+		Connection con = Conexao.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
 		try {
-			Connection con = Conexao.getConnection();
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(SQL_findAll);
+			st = con.createStatement();
+			rs = st.executeQuery(SQL_findAll);
 			while (rs.next()) {
 				MedicoTO medico = new MedicoTO();
 				medico.setCRM(rs.getString(1));
@@ -36,6 +38,15 @@ public class MedicoBO {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally{
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 		}
 		return resultado;
 	}

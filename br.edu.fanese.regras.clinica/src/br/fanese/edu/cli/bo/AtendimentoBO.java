@@ -29,9 +29,10 @@ public class AtendimentoBO {
 	
 	public boolean insert(Date dataConsulta, int codCliente, String crm, String atdRealizado) {
 		boolean retorno = true;
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
 		try {
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_create);
+			st = con.prepareStatement(SQL_create);
 			st.setDate(1, dataConsulta);
 			st.setInt(2, codCliente);
 			st.setString(3, crm);
@@ -40,16 +41,25 @@ public class AtendimentoBO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			retorno = false;
+		} finally{
+			try{
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return retorno;
 	}
 	
 	public AtendimentoTO findByPrimaryKey(int cod){
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
 		try{
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_findByPrimayKey);
+			st = con.prepareStatement(SQL_findByPrimayKey);
 			st.setInt(1, cod);
-			ResultSet rs = st.executeQuery();
+			rs = st.executeQuery();
 			if(rs.next()){
 				AtendimentoTO atendimentoTO = new AtendimentoTO();
 				atendimentoTO.setCodAtendimento(rs.getInt("codAtendimento"));
@@ -66,15 +76,25 @@ public class AtendimentoBO {
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
+		} finally{
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public List<AtendimentoTO> findAll() {
 		List<AtendimentoTO> resultado = new ArrayList<AtendimentoTO>();
+		Connection con = Conexao.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
 		try {
-			Connection con = Conexao.getConnection();
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(SQL_findAll);
+			st = con.createStatement();
+			rs = st.executeQuery(SQL_findAll);
 			while (rs.next()) {
 				AtendimentoTO atendimentoTO = new AtendimentoTO();
 				atendimentoTO.setCodAtendimento(rs.getInt("codAtendimento"));
@@ -87,44 +107,69 @@ public class AtendimentoBO {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally{
+			try{
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return resultado;
 	}
 	
 	public boolean update(String atdRealizado, int codAtendimento){
 		boolean retorno = true;
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
 		try{
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_update);
+			st = con.prepareStatement(SQL_update);
 			st.setString(1, atdRealizado);
 			st.setInt(2, codAtendimento);
 			retorno = st.execute();
 		} catch (Exception e){
 			e.printStackTrace();
 			retorno=false;
+		} finally{
+			try{
+				st.close();
+				con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return retorno;
 	}
 	
 	public boolean remove(int cod){
+		Connection con = Conexao.getConnection();
+		PreparedStatement st = null;
 		try{
-			Connection con = Conexao.getConnection();
-			PreparedStatement st = con.prepareStatement(SQL_remove);
+			st = con.prepareStatement(SQL_remove);
 			st.setInt(1, cod);
 			return st.execute();
 		} catch (Exception e){
 			e.printStackTrace();
 			return false;
+		} finally{
+			try{
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	public List<AtendimentoTO> findByAtendido(String atendido){
 		atendido = "'"+atendido+"'";
+		Connection con = Conexao.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
 		try {
 			List<AtendimentoTO> resultado = new ArrayList<AtendimentoTO>();
-			Connection con = Conexao.getConnection();
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(SQL_findByAtendido+atendido);
-//			ResultSet rs = st.executeQuery(SQL_findByAtendido);
+			st = con.createStatement();
+			rs = st.executeQuery(SQL_findByAtendido+atendido);
 			while(rs.next()){
 				AtendimentoTO atendimentoTO = new AtendimentoTO();
 				atendimentoTO.setCodAtendimento(rs.getInt("codAtendimento"));
@@ -140,6 +185,14 @@ public class AtendimentoBO {
 			return resultado;
 		} catch (Exception e) {
 			return null;
+		} finally {
+			try {
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
